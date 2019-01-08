@@ -34,7 +34,7 @@ class ValueHead(nn.Module):
     def __init__(self):
         super().__init__()
         self.relu = nn.ReLU(inplace=True)
-        self.conv = nn.Conv2d(16, 1, 1)  # 1 channel input, 1 filter of kernel size 1x1
+        self.conv = nn.Conv2d(16, 1, 1)  # 16 channel input, 1 filter of kernel size 1x1
         self.bn = nn.BatchNorm2d(1)
         self.fc1 = nn.Linear(3*3, 3)
         self.fc2 = nn.Linear(3, 1)
@@ -60,7 +60,7 @@ class PolicyHead(nn.Module):
         super().__init__()
         self.relu = nn.ReLU(inplace=True)
 
-        self.conv = nn.Conv2d(16, 2, 1)  # 1 channel input, 2 filters of kernel size 1x1
+        self.conv = nn.Conv2d(16, 2, 1)  # 16 channel input, 2 filters of kernel size 1x1
         self.bn = nn.BatchNorm2d(2)
         self.fc = nn.Linear(2*3*3, 4)
 
@@ -73,7 +73,7 @@ class PolicyHead(nn.Module):
         # returns logit probabilities
         return x
 
-
+# similarly to alphazero: value + policy head, res tower, conv blocks
 class Net(nn.Module):
     def __init__(self, res_block, value_head, policy_head):
         super().__init__()
